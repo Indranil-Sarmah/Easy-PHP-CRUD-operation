@@ -5,14 +5,15 @@ $sql ="select * from student";
 $res = mysqli_query($conn,$sql);
 
 ?>
-<br>
-<a href="">Add a new Record</a>
-<br>
-</br>
+
 <style>
+
 
     *{
         font-size: large;
+    }
+    body{
+        padding: 10px;
     }
     td{
         padding: 5px;
@@ -26,6 +27,7 @@ $res = mysqli_query($conn,$sql);
     }
 </style>
 <body>
+<h3>CRUD</h3>
 <table>
     <tr>
         <td>S.No</td>
@@ -44,9 +46,16 @@ $res = mysqli_query($conn,$sql);
           <td><?php echo $row['city'];?></td>
           <td>
           <a href="">Edit</a>&nbsp;    
-          <a href="delete.php">Delete</a></td>
+          <a href="delete.php?id=<?php echo $row['id']?>"<a>Delete</a></td>
       </tr>
         <?php $i++; } ?>
 </table>
+
+<ul>
+    <li><a href="add.php">Add a new Record</a></li>
+</ul>
+<br>
+<a href="logut.php">LOGOUT</a>
+
 </body>
 
