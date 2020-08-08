@@ -1,6 +1,7 @@
 <?php
 
-    $conn = mysqli_connect("localhost","root","","crud");
+    include('connect.php');
+    
     $id = $_GET['id'];
 
     $sql ="delete from student where id = '$id'";

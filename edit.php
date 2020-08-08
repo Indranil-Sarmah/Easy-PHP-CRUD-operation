@@ -1,12 +1,15 @@
 <?php
-   include('connect.php');
+   
+    include('connect.php');
+
+    $id = $_GET['id'];
 
     if(isset($_POST['submit'])){
 
         $name = $_POST['name'];
         $city = $_POST['city'];
 
-        $sql = "insert into student(name,city) values ('$name','$city')";
+        $sql = "update student set name = '$name' ,city='$city' where id='$id'";
 
         mysqli_query($conn,$sql);
 
@@ -14,6 +17,11 @@
         die();
     }
 
+    $res = mysqli_query($conn,"select * from student where id='$id'");
+    $row = mysqli_fetch_assoc($res);
+
+    $name=$row['name'];
+    $city=$row['city'];
 
 ?>
 
@@ -41,17 +49,17 @@
     }
 </style>
 <h3>CRUD</h3>
-<h4>Create</h4>
+<h4>Update</h4>
 <form method="post">
     <table>
         <tr>
             <td>Name</td>
-            <td><input type="text" name="name" required="true"></td>
+            <td><input type="text" name="name" required="true" value="<?php echo $name ?>"></td>
         </tr>
 
         <tr>
             <td>City</td>
-            <td><input type="text" name="city" required="true"></td>
+            <td><input type="text" name="city" required="true" value="<?php echo $city ?>"></td>
         </tr>
         
         <tr>
